@@ -1,0 +1,10 @@
+int s_cmp(char* s1, char* s2);
+int s_len(char* s1);
+int s_spn(char* s1, char c);
+char* s_tok(char** s, char* del);
+char* s_cpy(char* s1, char* s2);
+char* s_ffut(char* s, char* c);
+char* s_cncat(char* str, char* strtobecpy, int cnt);
+void remove_spaces(char* s);
+void input(char* s);
+void print(char* s);

@@ -1,0 +1,1 @@
+void GenRandomGraphs(int NOEdge, int NOVertex);
