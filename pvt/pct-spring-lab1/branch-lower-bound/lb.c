@@ -3,7 +3,11 @@
 #include <inttypes.h>
 #include <time.h>
 
-enum {N = 10000000};
+enum
+{
+    W = 15360,
+    H = 8640
+};
 
 double wtime()
 {
@@ -12,62 +16,69 @@ double wtime()
     return ts.tv_sec + ts.tv_nsec * 1E-9;
 }
 
-/* lower_bound: Returns the first element not less than value (std::lower_bound) */
-int lower_bound(int *v, int n, int value)
+int image_is_dark(uint8_t *img, int width, int height)
 {
-    int left = 0, right = n - 1;
-    while (left < right) {
-        int mid = (left + right) / 2;
-        if (v[mid] >= value)
-            right = mid;
-        else
-            left = mid + 1;
+    int count = 0;
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            if (img[i * width + j] >= 128)
+            {
+                count++;
+            }
+        }
     }
-    return v[left];
+    return count < width * height / 2;
 }
 
-int lower_bound_opt(int *v, int n, int value)
+int image_is_dark_opt(uint8_t *img, int width, int height)
 {
-    int left = 0, right = n - 1;
-    while (left < right) {
-        int mid = (left + right) / 2;
-        /* TODO: remove conditional branch */
-        if (v[mid] >= value)
-            right = mid;
-        else
-            left = mid + 1;
+    int count = 0;
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            // Dividing by 2^7.
+            count += (img[i * width + j] >> 7);
+        }
     }
-    return v[left];
-}
-
-double run()
-{
-    int *v = malloc(sizeof(*v) * N);
-    for (int i = 0; i < N; i++) {
-        v[i] = (i + 1) * 2;
-    }
-
-    double t = wtime();
-    volatile int lb = lower_bound(v, N, 2 * N);
-    //volatile int lb = lower_bound_opt(v, N, 2 * N);
-    t = wtime() - t;
-
-    #if 0
-    printf("lb = %d\n", lb);
-    #endif
-
-    free(v);
-    return t;
+    return count < width * height / 2;
 }
 
 int main()
 {
-    double t = 0;
-    int nreps = 100;
-    for (int i = 0; i < nreps; i++)
-        t += run();
-    t /= nreps;
-    printf("Time %.9f\n", t);
+    uint8_t *image = malloc(sizeof(*image) * W * H);
+
+    srand(0);
+
+    for (int i = 0; i < H; i++)
+    {
+        for (int j = 0; j < W; j++)
+        {
+            image[i * W + j] = rand() % 256;
+        }
+    }
+
+    #if 0
+    
+        double t = wtime();
+        int dark = image_is_dark(image, W, H);
+        t = wtime() - t;
+
+        printf("Time unopt: %.6f, dark: %d\n", t, dark);
+    
+    #endif
+    #if 1
+     
+    	double t = wtime();
+    	int dark = image_is_dark_opt(image, W, H);
+    	t = wtime() - t;
+    
+    	printf("Time opt: %.6f, dark: %d\n", t, dark);
+     
+    #endif
+    free(image);
 
     return 0;
 }

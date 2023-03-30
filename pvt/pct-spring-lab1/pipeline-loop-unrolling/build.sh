@@ -1,4 +1,4 @@
 #!/bin/sh
 
-gcc -g -fopt-info -o prog ./prog.c
+gcc -g -O2 -fopt-info -o prog ./prog.c
 

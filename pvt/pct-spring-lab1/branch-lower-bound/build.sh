@@ -1,4 +1,4 @@
 #!/bin/sh
 
-gcc -g -o lb ./lb.c
+gcc -g -O2 -o lb ./lb.c
 
