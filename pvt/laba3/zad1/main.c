@@ -73,9 +73,9 @@ double mrule_parallel(const int n_threads)
 #pragma omp barrier
             if (n > n0)
                 delta = fabs(sq[k] - sq[k ^ 1]) / 3.0;
-            // #if 0
-            // printf("n=%d i=%d sq=%.12f delta=%.12f\n", n, k, sq[k], delta);
-            // #endif
+             #if 0
+             printf("n=%d i=%d sq=%.12f delta=%.12f\n", n, k, sq[k], delta);
+             #endif
         }
 
 #if 0
