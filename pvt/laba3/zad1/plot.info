@@ -20,4 +20,4 @@ set format x "%g"
 set format y "%.3f"
 
 plot "data.dat" using 1:1 title "linear speedup" with linespoints ls 1, \
-"data.dat" using 1:2 title "on 100000000 solutions speedup" with linespoints ls 3
+"data.dat" using 1:2 title "n0 = 100000000" with linespoints ls 2
