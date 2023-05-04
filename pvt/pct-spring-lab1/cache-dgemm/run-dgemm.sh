@@ -1,3 +1,3 @@
 #!/bin/sh
 
-taskset --cpu-list 0 ./dgemm
+perf report -e cache-misses taskset --cpu-list 0 ./dgemm
