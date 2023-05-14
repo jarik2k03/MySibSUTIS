@@ -1,0 +1,19 @@
+#!/usr/bin/gnuplot
+set termoption enhanced
+set terminal svg size 800,600 font "Arial, 18"
+set output "plot.svg"
+
+set style line 1 lc rgb "blue" lt "dotted" lw 2 pt 9 ps 1
+set style line 2 lc rgb "red" lt 1 lw 2 pt 1 ps 1
+set style line 3 lc rgb "green" lt 1 lw 2 pt 3 ps 1
+set style line 4 lc rgb "yellow" lt 1 lw 2 pt 5 ps 1
+
+set grid
+set xlabel "Threads"
+set ylabel "Speedup"
+set title "Quick sort"
+set key top left
+plot "data.txt" using 1:2  title "Linear Speedup" with linespoints ls 1,\
+"data.txt" using 1:3  title "N=1e+9, threshold = 1000" with linespoints ls 2,\
+"data.txt" using 1:4  title "N=2e+9, threshold = 1000" with linespoints ls 3,\
+"data.txt" using 1:5  title "N=1e+9, threshold = 2000" with linespoints ls 4
