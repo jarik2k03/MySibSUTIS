@@ -1,0 +1,7 @@
+*.log
+*.a
+*.d
+*.o
+obj
+bin
+*.sa
