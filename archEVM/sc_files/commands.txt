@@ -1,0 +1,14 @@
+READ    10
+WRITE   11
+LOAD    20
+STORE   21
+ADD     30
+SUB     31
+DIVIDE  32
+MUL     33
+JUMP    40
+JNEG    41
+JZ      42
+HALT    43
+OR      53
+XOR     54

@@ -1,0 +1,8 @@
+10 INPUT A
+20 INPUT B
+30 PRINT A
+40 LET C = B / ((A - B) * (B + (A - B) / A))
+50 INPUT E
+60 IF C = 0 GOTO 16
+70 PRINT B
+80 END
