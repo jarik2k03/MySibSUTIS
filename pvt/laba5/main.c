@@ -4,7 +4,7 @@
 #include <string.h>
 #include <omp.h>
 
-#define threshold 2000
+#define threshold 10000
 
 void swap(int* a, int* b)
 {
