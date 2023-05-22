@@ -17,7 +17,7 @@ void partition(int *v, uint32_t low, uint32_t high, uint32_t *left, uint32_t *ri
 {
     uint32_t i = low;
     uint32_t j = high;
-    int pivot = v[(i + j) / 2];
+    int pivot = v[(i + j + 1) / 2];
 
     while (i <= j) {
         while (v[i] < pivot) i++;
